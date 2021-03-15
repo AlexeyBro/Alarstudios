@@ -14,12 +14,13 @@ protocol ImageDownloader: NetworkManager {
 final class ImageDownloaderImpl: ImageDownloader {
     
     var session: URLSession
-    let cache: CacheManager
+    var cache: URLCache
     
-    init(cache: CacheManager) {
-        self.cache = cache
-        
+    init() {
+        let size = 100 * 1024 * 1024
+        cache = URLCache(memoryCapacity: size, diskCapacity: size, diskPath: "images")
         let configuration = URLSessionConfiguration.default
+        configuration.urlCache = cache
         session = URLSession(configuration: configuration)
     }
     
@@ -28,37 +29,39 @@ final class ImageDownloaderImpl: ImageDownloader {
         guard let url = URL(string: URLString) else { return }
         let request = URLRequest(url: url)
         
-        if let cacheImage = cache.checkImageCache(forKey: url) {
-            DispatchQueue.main.async {
-                completion(.success(cacheImage))
+        let task = session.dataTask(with: request) { data, response, error in
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(.requestFail))
+                return
             }
-        } else {
-            let task = session.dataTask(with: request) { data, response, error in
-                
-                guard let response = response as? HTTPURLResponse else {
-                    completion(.failure(.requestFail))
-                    return
+            
+            if let error = error as? URLError {
+                if error.code.rawValue == -1009 { completion(.failure(.networkFail)) }
+            }
+            ///if data in cache take cache
+            if let cacheData = self.cache.cachedResponse(for: request) {
+                guard let image = UIImage(data: cacheData.data) else { return }
+                DispatchQueue.main.async {
+                    completion(.success(image))
                 }
-                
-                if let error = error as? URLError {
-                    if error.code.rawValue == -1009 { completion(.failure(.networkFail)) }
-                }
-                
-                if response.statusCode == 200 {
-                    if let data = data {
-                        guard let image = UIImage(data: data) else { return }
-                        self.cache.putImageCache(withImage: image, forKey: url)
-                        DispatchQueue.main.async {
-                            completion(.success(image))
-                        }
-                    } else {
-                        completion(.failure(.jsonParsingFailure))
+            } else if response.statusCode == 200 {
+                if let data = data {
+                    ///put data in cache
+                    let cacheData = CachedURLResponse(response: response, data: data)
+                    self.cache.storeCachedResponse(cacheData, for: request)
+                    
+                    guard let image = UIImage(data: data) else { return }
+                    DispatchQueue.main.async {
+                        completion(.success(image))
                     }
                 } else {
-                    completion(.failure(.requestFail))
+                    completion(.failure(.jsonParsingFailure))
                 }
+            } else {
+                completion(.failure(.requestFail))
             }
-            task.resume()
         }
+        task.resume()
     }
 }

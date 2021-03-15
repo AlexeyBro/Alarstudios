@@ -72,8 +72,7 @@ extension NetworkManager {
                     do {
                         let genericModel = try JSONDecoder().decode(decodeType, from: data)
                         completion(genericModel, nil)
-                    } catch let error {
-                        print("=====================>", error)
+                    } catch {
                         completion(nil, .jsonParsingFailure)
                     }
                 } else {

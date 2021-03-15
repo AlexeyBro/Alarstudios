@@ -31,7 +31,6 @@
 		79A5EF9025FEB6E3008E3C70 /* DescriptionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EF8F25FEB6E3008E3C70 /* DescriptionMapView.swift */; };
 		79A5EF9925FEBE14008E3C70 /* DescriptionMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EF9825FEBE14008E3C70 /* DescriptionMapViewModel.swift */; };
 		79A5EF9E25FF0082008E3C70 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EF9D25FF0082008E3C70 /* Styles.swift */; };
-		79A5EFA425FF16FB008E3C70 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFA325FF16FB008E3C70 /* CacheManager.swift */; };
 		79EC248125FCAD6800010CF5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC248025FCAD6800010CF5 /* ListViewController.swift */; };
 		79EC249025FCBFE700010CF5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC248F25FCBFE700010CF5 /* Router.swift */; };
 		79EC249325FCCB7800010CF5 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC249225FCCB7800010CF5 /* UIColorExtension.swift */; };
@@ -74,7 +73,6 @@
 		79A5EF8F25FEB6E3008E3C70 /* DescriptionMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMapView.swift; sourceTree = "<group>"; };
 		79A5EF9825FEBE14008E3C70 /* DescriptionMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMapViewModel.swift; sourceTree = "<group>"; };
 		79A5EF9D25FF0082008E3C70 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		79A5EFA325FF16FB008E3C70 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		79EC248025FCAD6800010CF5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		79EC248F25FCBFE700010CF5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		79EC249225FCCB7800010CF5 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				79644AE625FB109000585AEE /* URLManager.swift */,
 				79644ADE25FB0E1500585AEE /* RequestFabric.swift */,
 				79644B2A25FBFB0300585AEE /* ImageDownloader.swift */,
-				79A5EFA325FF16FB008E3C70 /* CacheManager.swift */,
 				79644AD925FAF76A00585AEE /* NetworkManager.swift */,
 				79644AD325FAE4C700585AEE /* APIError.swift */,
 			);
@@ -335,7 +332,6 @@
 				79644B3625FC2F2300585AEE /* AuthConfigurator.swift in Sources */,
 				79EC249325FCCB7800010CF5 /* UIColorExtension.swift in Sources */,
 				79EC248125FCAD6800010CF5 /* ListViewController.swift in Sources */,
-				79A5EFA425FF16FB008E3C70 /* CacheManager.swift in Sources */,
 				79A5EF8C25FEAB6E008E3C70 /* MapConfigurator.swift in Sources */,
 				79644A7B25F9F46B00585AEE /* AuthViewController.swift in Sources */,
 				79644AD425FAE4C700585AEE /* APIError.swift in Sources */,

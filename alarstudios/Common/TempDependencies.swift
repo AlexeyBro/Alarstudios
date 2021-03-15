@@ -11,6 +11,5 @@ final class TempDependencies {
     
     static let baseNeworkManager = BaseNetworkManager()
     static let requestFabric = RequestFabricImpl()
-    static let cacheManager = CacheManagerImpl()
-    static let imageDownloader = ImageDownloaderImpl(cache: cacheManager)
+    static let imageDownloader = ImageDownloaderImpl()
 }
