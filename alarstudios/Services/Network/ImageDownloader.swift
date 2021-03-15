@@ -14,7 +14,7 @@ protocol ImageDownloader: NetworkManager {
 final class ImageDownloaderImpl: ImageDownloader {
     
     var session: URLSession
-    var cache: URLCache
+    private var cache: URLCache
     
     init() {
         let size = 100 * 1024 * 1024
